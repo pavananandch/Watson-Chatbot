@@ -1,0 +1,169 @@
+<html >
+	<head>
+		<meta charset="UTF-8">
+			<title>Oliver - The Password Reset Bot</title>
+			<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+			<link rel="stylesheet" href="css/normalize.css">
+				<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+					<link rel='stylesheet prefetch' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/104946/animate.min.css'>
+						<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+							<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+							
+							<link rel="stylesheet" href="css/chatlayout.css">
+								<script>window.$ = window.jQuery = require('jquery');</script>
+								<script>
+
+var ipcRenderer = require('electron').ipcRenderer;
+
+ipcRenderer.on('test', function() {
+    logout();
+});
+
+</script>
+<style>
+.typing{
+    margin-top: -6%;
+    margin-left: 9%;
+    font-size: 12px;
+}
+.logoutbut{
+background-color: #1e2a63 ;
+    border: none;
+    color: white;
+
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  
+      float: right;
+    margin-top: 1%;
+    cursor: pointer;
+}
+
+
+
+   .content {display:none;}               
+									<!-- changed -->
+.preload { 
+    position: fixed;
+    top: 35%;
+    left: 80%;
+
+    margin-top: 25%"
+	    }
+img {
+    margin-top: 19%;
+    margin-left: 7%;
+}
+
+body {
+    font-family: 'Montserrat';
+}
+
+								</style>
+							</head>
+							<body>
+								<div class="preload" >
+									<img src="images/1.gif" width=400; height=400; >
+									</div>
+									<!-- changed -->
+									<div class="content">
+										<div class="wrapper">
+											<nav id="nav" class="nav">
+												<div class="default-nav">
+													<h2 style="text-align:center;margin-top:34px;">Oliver - The Password Reset Bot</h2>
+													<h5 style="text-align: center;margin-top: -10px;">Built by 
+														<b>Miracle’s</b>
+														<font color="#00aae7">Innovation</font>
+														<b> Labs</b>
+													</h5>
+													<div class="main-nav">
+														<!-- 	  <button class="logoutbut" onclick="logout()"><span><i class="fa fa-sign-out"></i></span></button> -->
+													</div>
+												</div>
+											</nav>
+											<div id="inner" class="inner">
+												<div  id="content" class="content"></div>
+												<div class="typing-indicator" id="typer">
+													<span></span>
+													<span></span>
+													<span></span>
+												</div>
+												<br>
+													<br>
+													</div>
+												</div>
+												<div id="bottom" class="bottom">
+												<div class="typing"><span><p>agent typing...</p></span></div>
+												
+													<textarea id="input" class="input" placeholder="Type your message..."></textarea>
+													<div>
+														<button id="send" class="send" ></button>
+														<audio id="audio" src="./notification.mp3" ></audio>
+													</div>
+												</div>
+											</div>
+											<script>
+											 
+ipcRenderer.on('online', function() {
+		  console.log("connection exist");
+           document.getElementById("input").disabled = false;
+		   document.getElementById("send").disabled = false;
+});
+ipcRenderer.on('offline', function() {
+		document.getElementById("input").disabled = true;
+		document.getElementById("send").disabled = true;
+		alert("internet connection not available");
+		console.log("connection not exist");
+});
+ function play(){
+       var audio = document.getElementById("audio");
+       audio.play();
+                 }
+				 
+
+
+$(function() {										   
+												<!-- changed -->
+    $(".preload").fadeOut(2000, function() {
+        $(".content").fadeIn(1000);        
+    });
+});
+
+</script>
+											<!-- <script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $.get("http://passwordresetbottest.eu-gb.mybluemix.net/logout", function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+});
+</script> -->
+											<script type="text/javascript">
+var idleTime = 0;
+$(document).ready(function () {
+    //Increment the idle time counter every minute.
+    var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
+
+    //Zero the idle timer on mouse movement.
+    $(this).mousemove(function (e) {
+        idleTime = 0;
+    });
+    $(this).keypress(function (e) {
+        idleTime = 0;
+    });
+});
+function timerIncrement() {
+    idleTime++;
+    if (idleTime > 20) { // 20 minutes
+		alert("Since you were away for a while, you have been logged out. Please re-login.");
+		logout();
+    }
+}
+</script>
+											<script>window.$ = window.jQuery = require('jquery');</script>
+											<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+											<script src="js/chatlayout.js"></script>
+										</body>
+									</html>

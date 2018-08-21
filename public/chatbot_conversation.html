@@ -1,0 +1,616 @@
+<html xmlns="http://www.w3.org/1999/xhtml" class="gr__newsletters-2017-sivanmyc_c9MEs_io"><head>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,">
+	    <script src="http://code.jquery.com/jquery-1.11.1.js"></script> 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <title>Chatbot</title>
+  </head>
+  <body style="margin:0" data-gr-c-s-loaded="true" class = "contain">
+      <span style="display:none;font-size:12px;font-family:'Open Sans';">Conversational Chatbot Demo</span>
+    <table cellpadding="0" cellspacing="0" align="center" border="0" width="100%">
+      <tbody>
+        <tr>
+          <td align="center">
+            <table cellpadding="0" cellspacing="0" align="center" border="0" width="100%" background="http://www.miraclesoft.com/images/newsletters/2017/September/Bot_banner.png" style="
+              background-position: center;
+              background-size: cover;
+              ">
+              <tbody>
+                <tr>
+                  <td align="center" style="
+                    width: 100%;
+                    " background="http://www.miraclesoft.com/images/newsletters/2017/December/black1.png">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width: 1000px;" align="center">
+                      <tbody>
+                        <tr>
+                          <td align="center">
+                            <table align="center" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:1000px">
+                              <tbody>
+                                <tr>
+                                  <td align="center">
+                                    <table cellpadding="0" cellspacing="0" border="0" align="left" style="max-width: 520px;display:inline-block;">
+                                      <tbody>
+                                        <tr>
+                                          <td height="10px"></td>
+                                        </tr>
+                                        <tr>
+                                          <td align="center">
+                                            <a target="blank" href=" http://www.miraclesoft.com/">
+                                            <img align="left" style="width: 150px;" src="http://www.miraclesoft.com/images/newsletters/Q2/miracle-logo-light.png">
+                                            </a> 
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td height="20px"></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                  <td align="center">
+                                    <table align="right" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:520px">
+                                      <tbody>
+                                        <tr>
+                                          <td align="right">
+                                            <div align="right" style="display:inline-block;">
+                                              <table cellpadding="0" cellspacing="0" border="0" align="center" width="100%" style="">
+                                                <tbody>
+                                                  <tr>
+                                                    <td align="center">
+                                                      <table cellpadding="0" cellspacing="0" border="0" align="center" width="100%" style="max-width:250px;">
+                                                        <tbody>
+                                                          <tr>
+                                                            <td height="20px"></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td align="center" width="100px">
+                                                              <a target="blank" href="http://www.miraclesoft.com/company/" style="text-decoration:none;color:#ffffff;font-size: 16px;font-family:'Open Sans';">About</a> 
+                                                            </td>
+                                                            <td align="center" width="100px">
+                                                              <a target="blank" href="http://www.miraclesoft.com/services/" style="text-decoration:none;color:#ffffff;font-size: 16px;font-family:'Open Sans';">Services</a> 
+                                                            </td>
+                                                            <td align="center" width="100px">
+                                                              <a target="blank" href="http://www.miraclesoft.com/contact/" style="text-decoration:none;color:#ffffff;font-size: 16px;font-family:'Open Sans';">Contact</a> 
+                                                            </td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td height="20px"></td>
+                                                          </tr>
+                                                        </tbody>
+                                                      </table>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center">
+                    <table cellpadding="0" cellspacing="0" align="center" border="0" width="100%">
+                      <tbody>
+                        <tr>
+                          <td align="center">
+                            <table cellpadding="0" cellspacing="0" align="center" border="0" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td height="30px"></td>
+                                </tr>
+                                
+<tr>
+                                  <td align="center">
+                                    <img align="center" style="width: 200px;" src="http://www.miraclesoft.com/images/newsletters/2017/September/bot7.png">
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td align="center">
+                                    <table style="max-width: 1000px;" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" background="http://www.miraclesoft.com/images/newsletters/2017/December/black1.png">
+                                      <tbody>
+                                        <tr>
+                                          <td align="center">
+                                            <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                <tr>
+                                                  <td height="20"></td>
+                                                </tr>
+                                                <tr>
+                                                  <td align="center" style="line-height: 90px;padding:0 10px;color: #ffffff;font-family: Open Sans;font-size: 70px;font-weight: 600;">
+                                                    Conversational Chatbot
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                  <td height="20"></td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                        </tr>
+                        <tr>
+                          <td height="60px"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td height="0px"></td>
+        </tr>
+        <tr>
+          <td align="center">
+            <table align="center" cellpadding="0" cellspacing="0" width="100%" background="http://www.miraclesoft.com/images/newsletters/2017/September/IOT.png" style="background-size:cover">
+              <tbody>
+                <tr>
+                  <td align="center">
+                    <table style="max-width:1000px;" width="100%" cellspacing="0" cellpadding="0" align="center">
+                      <tbody class="xxx">
+                        <tr >
+                          <td height="40px"></td>
+                        </tr>
+                        <tr class="bubble you" >
+                          <td align="center">
+                            <table align="right" cellpadding="0" cellspacing="0" width="100%" style="max-width:125px">
+                              <tbody>
+                                <tr>
+                                  <td align="center">
+                                    <img src="http://www.miraclesoft.com/images/newsletters/2017/September/Robot_man.png" width="100px" align="center">
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table align="right" cellpadding="0" cellspacing="0" width="100%" style="
+                              max-width: 442px;
+                              ">
+                              <tbody>
+                                <tr>
+                                  <td align="center">
+                                    <table align="right" cellpadding="0" cellspacing="0" width="100%" style="border-radius: 15px 0;padding: 18px;max-width: 442px;background-color: #232527;">
+                                      <tbody>
+                                        <tr>
+                                          <td height="5px">
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td align="right" style="color: #ffffff;font-size: 22px;font-weight: 700;font-family: Open Sans;">BOT</td>
+                                        </tr>
+                                        <tr>
+                                          <td height="5px">
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td  class="chat" align="center" style="font-family: Open Sans;text-align: right;color: #fff;font-size: 15px;line-height: 30px;"><div class="conv">Hi! My name is Watson. I control the lights at your home!</div></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td align="left">
+                                    <table align="left" cellpadding="0" cellspacing="0" width="100%" style="font-size: 11px;max-width: 99px;color: #232527;font-family: Open Sans;padding: 3px;">
+                                      <tbody>
+                                        <tr>
+                                          <td align="center">Seen | 12:01 AM</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td height="10px"></td>
+                        </tr>
+                        <tr class="bubble me" >
+                          <td align="center">
+                            <table align="left" cellpadding="0" cellspacing="0" width="100%" style="max-width:125px">
+                              <tbody>
+                                <tr>
+                                  <td align="center">
+                                    <img src="http://www.miraclesoft.com/images/newsletters/2017/September/Blue_boy.png" width="100px" align="center">
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table align="left" cellpadding="0" cellspacing="0" width="100%" style="
+                              max-width: 243px;
+                              ">
+                              <tbody>
+                                <tr>
+                                  <td align="center">
+                                    <table align="left" cellpadding="0" cellspacing="0" width="100%" style="border-radius:0 15px;padding:18px;max-width: 243px;background-color: #00aae7;">
+                                      <tbody>
+                                        <tr>
+                                          <td height="5px">
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td align="left" style="color: #ffffff;font-size: 22px;font-weight: 700;font-family: Open Sans;">ME</td>
+                                        </tr>
+                                        <tr>
+                                          <td height="5px">
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td align="center" style="font-family: Open Sans;text-align: left;color: #fff;font-size: 15px;line-height: 30px;">Can you turn on the music?</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td align="right">
+                                    <table align="right" cellpadding="0" cellspacing="0" width="100%" style="font-size: 11px;max-width: 99px;color: #232527;font-family: Open Sans;padding: 3px;">
+                                      <tbody>
+                                        <tr>
+                                          <td align="center">Seen | 12:01 AM</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                       
+                        <tr>
+                          <td height="30px"></td>
+                        </tr>
+                        <tr style="display:none">
+                          <td align="center">
+                            <table cellpadding="0" cellspacing="0" border="0" align="center" width="100%" style="background-color:#ffffff;border: 4px solid #8c8c8c;max-width: 980px;border-radius: 35px;">
+                              <tbody>
+                                <tr>
+                                  <td align="center">
+                                    <table cellpadding="0" cellspacing="0" border="0" align="left" width="100%" style="
+                                      max-width: 52px;
+                                      ">
+                                      <tbody>
+                                        <tr>
+                                          <td height="5px"></td>
+                                        </tr>
+                                        <tr>
+                                          <td align="center">
+                                            <img src="http://www.miraclesoft.com/images/newsletters/2017/September/smile.png" width="40px">
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td height="5px"></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <table cellpadding="0" cellspacing="0" border="0" align="left" width="100%" style="
+                                      max-width: 201px;
+                                      color: rgba(140,140,140,0.5);
+                                      font-size: 17px;
+                                      font-family: Open Sans;
+                                      padding: 0 10px;
+">
+                                      <tbody>
+                                        <tr>
+                                          <td height="13px"></td>
+                                        </tr>
+                                        <tr>
+                                          <td align="left">
+                                            Type a message                                
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td height="5px"></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <table align="right" width="100%" style="
+                                      max-width: 57px;
+                                      ">
+                                      <tbody>
+                                        <tr>
+                                          <td height="3px"></td>
+                                        </tr>
+                                        <tr>
+                                          <td align="center" style="border-left: 2px solid #8c8c8c;">
+                                            <img src="http://www.miraclesoft.com/images/newsletters/2017/September/radio-microphone.png" width="35px">
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <table align="right" width="100%" style="
+                                      max-width: 57px;
+                                      ">
+                                      <tbody>
+                                        <tr>
+                                          <td height="3px"></td>
+                                        </tr>
+                                        <tr>
+                                          <td align="center" style="">
+                                            <img src="http://www.miraclesoft.com/images/newsletters/2017/September/attachment.png" width="35px">
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td height="40px"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" valign="top" style="background: #ffffff;">
+            <table width="100%" align="center" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr>
+                  <td style="background-size:cover;background:url(http://www.miraclesoft.com/images/newsletters/2017/September/bgg1.jpg)" align="center" bgcolor="#ffffff" width="100%" class="" background="http://www.miraclesoft.com/images/newsletters/2017/September/bgg1.jpg">
+                    <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr>
+                          <td align="center" valign="top" style="padding: 0 0px;">
+                            <table align="center" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                <tr>
+                                  <td width="200" align="center" valign="top">
+                                    <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr>
+                                          <td height="30" style="height: 30px; line-height:30px;"></td>
+                                        </tr>
+                                        <tr>
+                                          <td align="center" valign="top" style="line-height: 0px !important;">
+                                            <a style="text-decoration: none; display: block;" href="http://www.miraclesoft.com/" target="blank">
+                                            <img src="http://www.miraclesoft.com/images/newsletters/Q2/miracle-logo-light.png" alt="logo" width="100%" style="width: 100%; max-width: 100%;">
+                                            </a>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                <tr>
+                                  <td height="20" style="height: 20px; line-height:20px;"></td>
+                                </tr>
+                                <tr>
+                                  <td align="center" valign="top">
+                                    <table align="center" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr>
+                                          <td width="1000" align="center" valign="top" style="font-size: 0px !important;">
+                                            <div style="width: 100%; display: inline-block; vertical-align: top; font-size: normal; max-width: 70px;">
+                                              <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                  <tr>
+                                                    <td align="center" valign="top" style="padding: 0 10px;">
+                                                      <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                          <tr>
+                                                            <td height="10" style="height: 10px; line-height:10px;"></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td align="center" valign="top" style="line-height: 0px !important;">
+                                                              <a style="text-decoration: none; display: inline-block;" href="https://www.facebook.com/miracle45625" target="blank">
+                                                              <img src="http://www.miraclesoft.com/images/newsletters/2016/September/facebook-1.png" alt="socials1" width="45">
+                                                              </a>
+                                                            </td>
+                                                          </tr>
+                                                        </tbody>
+                                                      </table>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                            <div style="width: 100%; display: inline-block; vertical-align: top; font-size: normal; max-width: 70px;">
+                                              <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                  <tr>
+                                                    <td align="center" valign="top" style="padding: 0 10px;">
+                                                      <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                          <tr>
+                                                            <td height="10" style="height: 10px; line-height:10px;"></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td align="center" valign="top" style="line-height: 0px !important;">
+                                                              <a style="text-decoration: none; display: inline-block;" href="https://plus.google.com/+Team_MSS" target="blank">
+                                                              <img src="http://www.miraclesoft.com/images/newsletters/2016/September/google-plus-2.png" alt="socials1" width="45">
+                                                              </a>
+                                                            </td>
+                                                          </tr>
+                                                        </tbody>
+                                                      </table>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                            <div style="width: 100%; display: inline-block; vertical-align: top; font-size: normal; max-width: 70px;">
+                                              <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                  <tr>
+                                                    <td align="center" valign="top" style="padding: 0 10px;">
+                                                      <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                          <tr>
+                                                            <td height="10" style="height: 10px; line-height:10px;"></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td align="center" valign="top" style="line-height: 0px !important;">
+                                                              <a style="text-decoration: none; display: inline-block;" href="https://www.linkedin.com/company/miracle-software-systems-inc" target="blank">
+                                                              <img src="http://www.miraclesoft.com/images/newsletters/2016/September/linkedin-2.png" alt="socials1" width="45">
+                                                              </a>
+                                                            </td>
+                                                          </tr>
+                                                        </tbody>
+                                                      </table>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                            <div style="width: 100%; display: inline-block; vertical-align: top; font-size: normal; max-width: 70px;">
+                                              <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                  <tr>
+                                                    <td align="center" valign="top" style="padding: 0 10px;">
+                                                      <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                          <tr>
+                                                            <td height="10" style="height: 10px; line-height:10px;"></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td align="center" valign="top" style="line-height: 0px !important;">
+                                                              <a style="text-decoration: none; display: inline-block;" href="https://www.flickr.com/photos/team_miracle" target="blank">
+                                                              <img src="http://www.miraclesoft.com/images/newsletters/2016/September/flickr-1.png" alt="socials1" width="45">
+                                                              </a>
+                                                            </td>
+                                                          </tr>
+                                                        </tbody>
+                                                      </table>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                            <div style="width: 100%; display: inline-block; vertical-align: top; font-size: normal; max-width: 70px;">
+                                              <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                  <tr>
+                                                    <td align="center" valign="top" style="padding: 0 10px;">
+                                                      <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                          <tr>
+                                                            <td height="10" style="height: 10px; line-height:10px;"></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td align="center" valign="top" style="line-height: 0px !important;">
+                                                              <a style="text-decoration: none; display: inline-block;" href="https://twitter.com/Team_MSS" target="blank">
+                                                              <img src="http://www.miraclesoft.com/images/newsletters/2016/September/twitter-2.png" alt="socials2" width="45">
+                                                              </a>
+                                                            </td>
+                                                          </tr>
+                                                        </tbody>
+                                                      </table>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                            <div style="width: 100%; display: inline-block; vertical-align: top; font-size: normal; max-width: 70px;">
+                                              <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                  <tr>
+                                                    <td align="center" valign="top" style="padding: 0 10px;">
+                                                      <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                          <tr>
+                                                            <td height="10" style="height: 10px; line-height:10px;"></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td align="center" valign="top" style="line-height: 0px !important;">
+                                                              <a style="text-decoration: none; display: inline-block;" href="https://www.youtube.com/c/Team_MSS" target="blank">
+                                                              <img src="http://www.miraclesoft.com/images/newsletters/2016/September/youtube-3.png" alt="socials3" width="45">
+                                                              </a>
+                                                            </td>
+                                                          </tr>
+                                                        </tbody>
+                                                      </table>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td height="20" style="height: 15px; line-height:15px;"></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                <tr>
+                                  <td height="10" style="height: 10px; line-height:10px;"></td>
+                                </tr>
+                                <tr>
+                                  <td align="center" valign="top" style="color: #ffffff;font-family: 'Open Sans';font-size: 15px;mso-line-height-rule: exactly;line-height: 23px;font-weight: 500;">
+                                    &#169; Copyrights 2018 | Miracle Software Systems, Inc.
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td height="20" style="height: 20px; line-height:20px;"></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <script>
+  var socket = io.connect('http://localhost:6002');
+  var chathistory;								//chathist[i][name]        chathist[i].Oliver
+  var name;
+  socket.on('chathist',function(data){
+  console.log(data)
+   name = data.name
+                for (var i = 0; i < data.chathist.length; i++) {
+
+				  var oliver = ' <tr class="bubble you"> <td align="center"> <table align="right" cellpadding="0" cellspacing="0" width="100%" style="max-width:125px"> <tbody> <tr> <td align="center"> <img src="http://www.miraclesoft.com/images/newsletters/2017/September/Robot_man.png" width="100px" align="center"> </td> </tr> </tbody> </table> <table align="right" cellpadding="0" cellspacing="0" width="100%" style=" max-width: 442px; "> <tbody> <tr> <td align="center"> <table align="right" cellpadding="0" cellspacing="0" width="100%" style="border-radius: 15px 0;padding: 18px;max-width: 442px;background-color: #232527;"> <tbody> <tr> <td height="5px"> </td> </tr> <tr> <td align="right" style="color: #ffffff;font-size: 22px;font-weight: 700;font-family: Open Sans;">BOT</td> </tr> <tr> <td height="5px"> </td> </tr> <tr> <td class="chat" align="center" style="font-family: Open Sans;text-align: right;color: #fff;font-size: 15px;line-height: 30px;"><div class="conv">'+data.chathist[i].Oliver+'</div></td> </tr> </tbody> </table> </td> </tr> <tr> <td align="left"> <table align="left" cellpadding="0" cellspacing="0" width="100%" style="font-size: 11px;max-width: 99px;color: #232527;font-family: Open Sans;padding: 3px;"> <tbody> <tr> <td align="center">Seen | 12:01 AM</td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr>';
+  var user = '<tr class="bubble me"> <td align="center"> <table align="left" cellpadding="0" cellspacing="0" width="100%" style="max-width:125px"> <tbody> <tr> <td align="center"> <img src="http://www.miraclesoft.com/images/newsletters/2017/September/Blue_boy.png" width="100px" align="center"> </td> </tr> </tbody> </table> <table align="left" cellpadding="0" cellspacing="0" width="100%" style=" max-width: 243px; "> <tbody> <tr> <td align="center"> <table align="left" cellpadding="0" cellspacing="0" width="100%" style="border-radius:0 15px;padding:18px;max-width: 243px;background-color: #00aae7;"> <tbody> <tr> <td height="5px"> </td> </tr> <tr> <td align="left" style="color: #ffffff;font-size: 22px;font-weight: 700;font-family: Open Sans;">ME</td> </tr> <tr> <td height="5px"> </td> </tr> <tr> <td align="center" style="font-family: Open Sans;text-align: left;color: #fff;font-size: 15px;line-height: 30px;">'+data.chathist[i][name]+'</td> </tr> </tbody> </table> </td> </tr> <tr> <td align="right"> <table align="right" cellpadding="0" cellspacing="0" width="100%" style="font-size: 11px;max-width: 99px;color: #232527;font-family: Open Sans;padding: 3px;"> <tbody> <tr> <td align="center">Seen | 12:01 AM</td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr>';
+					$('.xxx').append(user)
+                    $('.xxx').append(oliver)
+                }
+  })
+  </script>
+</body></html>

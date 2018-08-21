@@ -1,0 +1,56 @@
+{
+  "name": "botkit-starter-web",
+  "version": "0.0.1",
+  "description": "A starter kit for building a custom bot for your website with Botkit Studio",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "botkit": "^0.6.8",
+    "botkit-middleware-watson": "^1.7.1",
+    "botkit-storage-mongo": "^1.0.6",
+    "botkit-studio-metrics": "0.0.4",
+    "cfenv": "^1.1.0",
+    "cli-table": "^0.3.1",
+    "cloudant": "^1.10.0-NOTICE",
+    "debug": "^3.1.0",
+    "electron": "^1.8.4",
+    "express": "^4.15.3",
+    "express-hbs": "^1.0.4",
+    "file-system": "^2.2.2",
+    "json-to-table": "^4.0.0",
+    "mongoose": "^4.13.7",
+    "node-env-file": "^0.1.8",
+    "node-mailer": "^0.1.1",
+    "nodemailer-mailgun-transport": "^1.3.6",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "npm": "^6.1.0",
+    "pdfkit": "^0.8.3",
+    "prompt-sync": "^4.1.5",
+    "querystring": "^0.2.0",
+    "randomstring": "^1.1.5",
+    "request": "^2.79.0",
+    "socket.io": "^2.0.4",
+    "unirest": "^0.5.1",
+    "watson-developer-cloud": "^3.5.0",
+    "wordfilter": "^0.2.6"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/howdyai/botkit-starter-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/howdyai/botkit-starter-web/issues"
+  },
+  "homepage": "https://github.com/howdyai/botkit-starter-web",
+  "keywords": [
+    "bots",
+    "chatbots",
+    "web chat"
+  ],
+  "author": "ben@howdy.ai",
+  "license": "ISC"
+}

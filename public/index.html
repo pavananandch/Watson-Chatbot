@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Oliver - The Password Reset Bot</title>
+
+   <style>
+          .bg{
+              background-color:#232527;
+          } 
+          .image{
+                width: 80%;
+				display: block;
+				margin: auto;
+				margin-top: 60%;
+          }
+       </style>
+
+
+<script type="text/javascript">
+var ipcRenderer = require('electron').ipcRenderer;
+window.onload=timeout;
+function timeout(){
+window.setTimeout("redirect()",3000)}
+
+function redirect(){
+if(localStorage.getItem("name") == null){
+window.location="login.html"
+}
+else{
+ipcRenderer.send('addfile', function() {
+console.log("menutriggered")
+}); 
+window.location="chatlayout.html"
+}
+return}
+</script>
+</head>
+<body  class="bg" onload="timeout()">
+     <div class="mil-logo" style="vertical-align:middle">
+           <img class="image" src="./images/mil-light-logo.png" align="middle" alt="logo"/>
+       </div>
+</script>
+</body>
+</html>

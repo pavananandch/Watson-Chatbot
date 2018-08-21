@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">    
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+ <link rel="stylesheet" href="css/style.css">
+<title>Oliver - The Password Reset Bot</title>
+<script>
+window.$ = window.jQuery = require('jquery');
+var ipcRenderer = require('electron').ipcRenderer;
+function validateEmail(emailField){
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+        if (reg.test(emailField.value) == false) 
+        {
+            alert('Invalid Email Address');
+            return false;
+        }
+
+        return true;
+
+}
+function validateForm() {
+    var x = document.forms["myForm"]["name"].value;
+	var y = document.forms["myForm"]["email"].value;
+	var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  if (x == "") {
+        alert("name required");
+        return false;
+    }
+	if (y == "") {
+        alert("Email must be filled out");
+        return false;
+    }
+        if (reg.test(y) == false) 
+        {
+            alert('Invalid Email Address');
+            return false;
+        }
+	else{
+	
+var name=document.getElementById('name').value;
+var email=document.getElementById('email').value;
+// Check browser support
+//ipcRenderer.send('userdata',{ "name":name,"email":email}); 
+
+if (typeof(Storage) !== "undefined") {
+    // Store
+    localStorage.name = name;
+	localStorage.email = email;
+    // Retrieve
+	console.log("valid");
+    
+}
+ipcRenderer.send('addfile', function() {
+console.log("menutriggered")
+});  
+
+window.location="./chatlayout.html"	
+	}
+}
+</script>
+<style>
+	body {
+		font-family: 'Montserrat';
+		 background: url(./images/background.png);
+		background-repeat: no-repeat;
+		background-size: 500px 694px;
+	}
+</style>
+  </head>
+
+<body>  
+    <form class="pure-steps" name="myForm" >
+      <div class="pure-steps_group">
+        <div class="pure-steps_group-step">
+ 
+              <legend class="pure-steps_group-step_legend">Welcome to Oliver! </legend>
+			  <p class="pure-steps_group-step_sub">The Password Reset Bot</p>
+              <p class="pure-steps_group-step_item flexy-item flexy-column reverse">
+                <input type="text" placeholder="Type your name here" name="name" id="name" />
+                <label for="name">Name</label>
+              </p>
+			  <p class="pure-steps_group-step_item flexy-item flexy-column reverse">
+                <input type="email" placeholder="Type your email here" name="email" id="email" />
+                <label for="email">Email</label>
+              </p>
+          </div>		  
+           <ol class="pure-steps_group-triggers">
+           <li><input type=button class="button" id="myBtn" value="Submit" onclick="validateForm()" ></input></li>
+        </ol>
+    </form>
+	<script>
+var input = document.getElementById("name");
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("myBtn").click();
+    }
+});
+var ip = document.getElementById("email");
+ip.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("myBtn").click();
+    }
+});
+</script>
+  </body>
+</html>
