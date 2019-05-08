@@ -8,8 +8,8 @@ var user = {};
 
 
 var insightsModule = function(auth_token, bot_reference) {
-  token = process.env.M_INSIGHTS_TOKEN;
-  reference = process.env.M_INSIGHTS_REF;
+  token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzdkMTc3N2VmNTY0ODI4Zjg1ZDM1ZGYiLCJjcmVhdGVkQXQiOiIyMDE5LTAzLTA0VDEyOjE4OjAwLjAyN1oiLCJpYXQiOjE1NTE3MDE4ODB9.bGgMNOre_IZZPAZSyVg-kRqwJ9vSYcNUpwzue2cUxLc';
+  reference = '2a7dc0350180770c43e2dd6385774a7a';
 };
 
 insightsModule.prototype.logMessage = function(messageObj) {
@@ -32,8 +32,6 @@ insightsModule.prototype.logMessage = function(messageObj) {
     messageData.origin = "User";
     messageData.type = 'message';
 	messageData.intent = null ;
-	console.log('got it89');
-	console.log(messageData)
     reportMessage(messageData);
   } else {
 
@@ -60,7 +58,7 @@ module.exports = insightsModule;
 
 function reportMessage(messageData) {
   var requestPayload = {
-    url: "https://d6936366.ngrok.io/registerconversation/",
+    url: "https://minsights-server-1-1.azurewebsites.net/registerconversation/",
     method: 'POST',
     json: true,
     headers: {
@@ -74,7 +72,6 @@ function reportMessage(messageData) {
   return new Promise(function(fulfill, reject) {
     request.post(requestPayload, function(err, response, body) {
       if (!err) {
-        console.log(body);
       } else {
         console.log(err);
       }

@@ -1,4 +1,5 @@
 var env = require('node-env-file');
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 env(__dirname + '/.env');
 var express = require('express');
 var app = express();
@@ -59,14 +60,14 @@ var controller = Botkit.socketbot(bot_options);
 
 //SDK integration
 
-/*  controller.middleware.send.use(function(bot, message) {
+ controller.middleware.send.use(function(bot, message) {
 	insight.logMessage(message);
 });
 controller.middleware.receive.use(function(bot, message) {
         if (message.namedata) {	 
 		insight.logMessage(message);
 		  }
-}); */
+}); 
 
 //sdk integration
 
@@ -83,15 +84,15 @@ webserver.get('/', function(req, res) {
 webserver.get('/storeconv', function(req,res) {
 
 var message = req.query.id
-console.log("message",JSON.stringify(message))
+//console.log("message",JSON.stringify(message))
 var data = {"conversation":message}
     convdb.insert(data,function(err){
 		if(!err){
-			console.log("stored conv in db")
+			//console.log("stored conv in db")
 			res.send("data store in db")
 		}
 		else{
-			console.log(err)
+			//console.log(err)
 		}
 	})
 })
@@ -99,15 +100,15 @@ var name;
 var email;
 
 webserver.get('/checkuserid', function(req, res) {
-    console.log("userid checking", req.query);
+    //console.log("userid checking", req.query);
     checkdb.find({
         selector: req.query
     }, function(err, result) {
         if (err) {
-            console.log("error checkuserid api");
+            //console.log("error checkuserid api");
             res.send(false);
         } else {
-            console.log("checkuserid in");
+            //console.log("checkuserid in");
             if (result.docs.length != 0) {
                 res.send(true);
             } else {
@@ -123,9 +124,9 @@ webserver.get('/login', function(req, res) {
     res.sendFile(__dirname + '/public/chatlayout.html')
 })
 webserver.post('/servicenow', function(req, res) {
-    console.log('body to service-now', req.query.username);
+    //console.log('body to service-now', req.query.username);
     var options = {
-        url: 'https://dev29339.service-now.com/api/now/table/incident',
+        url: 'https://dev59275.service-now.com/api/now/table/incident',
         method: 'POST',
         headers: {
             "Accept": "application/json",
@@ -143,18 +144,19 @@ webserver.post('/servicenow', function(req, res) {
 
     function abc(error, response, body) {
         if (error) {
-            console.log('error with ServiceNow', error, null);
+            //console.log('error with ServiceNow', error, null);
             var arr = [];
             var op = '{"message": "I am struggling to connect my backend systems, please try again later"}';
             arr.push(op);
-            response.output.text[0] = arr[0];
+           // response.output.text[0] = arr[0];
             botty.reply(message, response)
         } else {
+			//console.log("body.result.number",body.result.number)
 			if(!body.result){
 				res.send("ID1233214")
 			}
 			else{
-            console.log("INDICENT", body.result.number)
+            //console.log("INDICENT", body.result.number)
             var incidentID = body.result.number;
             res.send(body.result.number)
 			}
@@ -185,7 +187,7 @@ var contextdata = [];
 var normalizedPath = require("path").join(__dirname, "skills");
 
 function yes_no(texty, contexty, callback) {
-    console.log('called yes_n0')
+    //console.log('called yes_n0')
     fyi(function(contexty1) {
         conversation.message({
             workspace_id: '02a363a1-d95c-46b1-b77a-8a79f42b5514',
@@ -209,9 +211,9 @@ function yes_no(texty, contexty, callback) {
                     arr.push(op);
                     response.output.text[0] = arr[0];
                     bot.reply(message, response)
-                    return console.log('[alice.insert fyi] ', err.message);
+                    return //console.log('[alice.insert fyi] ', err.message);
                 } else {
-                    console.log("fyi flow in", response);
+                    //console.log("fyi flow in", response);
                     callback(response)
                 }
             }
@@ -221,24 +223,25 @@ function yes_no(texty, contexty, callback) {
 }
 
 function fyi(callback) {
-    console.log('fyi called');
+    //console.log('fyi called');
 
     if (contextdata.length == 0) {
-        console.log('empty context')
+        //console.log('empty context')
         var ko = {};
         callback(ko);
     } else {
-        console.log('inserting new context');
+        //console.log('inserting new context');
         callback(contextdata);
     }
 }
 
 controller.on('message_received', function(bot, message, err) {
+	//console.log("message",message)
     if (err) {
+		console.log("err",err)
         bot.reply(message, "I am struggling to connect my backend systems, please try again later")
     }
     bot.botkit.config.replyWithTyping = false;
-console.log('message',message)
     if (message.state == 'Human') {
 
         var msg = {};
@@ -248,7 +251,7 @@ console.log('message',message)
         msg.data = message.chathist;
         messagey = message;
 
-        console.log("humanagent", message)
+        //console.log("humanagent", message)
         setTimeout(function() {
             bot.reply(message, {
                 'text': 'I’m sorry, I was not able to understand that Would you like to speak with an agent?',
@@ -257,7 +260,7 @@ console.log('message',message)
             })
         }, 350);
     } else {
-		console.log('botmessage',message)
+		console.log('botmessage',message.text)
         if (message.namedata != undefined) {
             name = message.namedata;
             email = message.emaildata;
@@ -274,12 +277,14 @@ console.log('message',message)
             context: message.context
         }, function(err, response) {
             if (err) {
+				console.log("err",err)
                 bot.reply(message, "I am struggling to connect my backend systems, please try again later")
             } else {
+				console.log("rest",response)
                 response.chathistory = message.chathist;
 				 console.log("response from ",JSON.stringify(response , null ,2));	
                 if (message.text == 'Yes') {
-					console.log("servicenow Msg",name+"/ Not able to find username for password reset")
+					//console.log("servicenow Msg",name+"/ Not able to find username for password reset")
                     unirest.post(appEnv.url + '/servicenow')
                         .headers({
                             'Accept': 'application/json',
@@ -337,27 +342,34 @@ console.log('message',message)
                             }
 							// Checking the SAP userName here
 				else if (JSON.parse(response.output.text[0]).cmd == "UserId") {
-                    unirest.get("http://12.28.130.97:8011/sap/opu/odata/sap/ZTEST_DEMO_SRV/ZBAPI_USER_EXISTSet('" + JSON.parse(response.output.text[0]).UserId + "')?$format=json")
+                    unirest.get("https://12.28.130.97:44311/sap/opu/odata/SAP/ZUSER_EXISTENCE_SRV/UserSet(UserName='" + JSON.parse(response.output.text[0]).UserId + "')?$format=json")
                         .auth({
-                            user: 'PIUSER',
-                            pass: 'miracle9'
+                            user: 'ABAP_User',
+                            pass: 'Creatief@4010'
                         })
                         .end(function(responsex) {
+							//console.log("responsex",responsex)
                             if (responsex.error) {
-                                var arr = [];
+								//changes done on 26/6/2019
+                                /* var arr = [];
                                 var op = '{"message": "I am not able to reach the SAP system right now."}';
                                 arr.push(op);
                                 response.output.text[0] = arr[0];
-                                console.log("userid name", name);
-                                bot.reply(message, response)
+                                bot.reply(message, response) */
+											yes_no('No', response.context, function(new_response) {
+                                            var testobj = {}
+                                            testobj[name] = message.text,
+                                                testobj['Oliver'] = JSON.parse(new_response.output.text[0]).message
+                                            bot.reply(message, new_response)
 
+                                        })
                             } else {
                                 if (responsex != undefined) {
 
-                                    console.log("userid response");
+                                    //console.log("userid response");
 
-                                    if (responsex.body.d.Return.Message == 'User ' + JSON.parse(response.output.text[0]).UserId + ' exists') {
-                                        console.log("flow userid");
+                                    if (responsex.body.d.Message == 'User ' + JSON.parse(response.output.text[0]).UserId + ' exists') {
+                                        //console.log("flow userid");
                                         yes_no('Yes', response.context, function(new_response) {
                                             var testobj = {}
                                             testobj[name] = message.text,
@@ -366,7 +378,6 @@ console.log('message',message)
 
                                         })
                                     } else {
-                                        console.log("UserId false");
 
                                         yes_no('No', response.context, function(new_response) {
                                             var testobj = {}
@@ -411,7 +422,7 @@ console.log('message',message)
                         })
                         .end(function(resp) {
 
-                            console.log("RAWRESPaasdf", resp.status);
+                            //console.log("RAWRESPaasdf", resp.status);
                             if (resp.status == 200) {
                                 var incidentID = resp.raw_body;
                                 var arr = [];
@@ -455,7 +466,7 @@ console.log('message',message)
                             "SystemId": response.context.System
                         })
                         .end(function(resp) {
-                            console.log("RAWRESPaasdf", resp.status);
+                            //console.log("RAWRESPaasdf", resp.status);
                             if (resp.status == 200) {
                                 var incidentID = resp.raw_body;
                                 var arr = [];
@@ -483,7 +494,7 @@ console.log('message',message)
                             }
                         })
                 } else if (JSON.parse(response.output.text[0]).cmd == "Name") { // checking the 1st security question
-                    console.log("Name triggered");
+                    //console.log("Name triggered");
                     unirest.get(appEnv.url + '/checkuserid')
                         .query({
                             "NickName": JSON.parse(response.output.text[0]).Name,
@@ -499,10 +510,10 @@ console.log('message',message)
                                 bot.reply(message, response)
                             } else {
 
-                                console.log('oye', name)
+                                //console.log('oye', name)
 
                                 if (responseName.body) {
-                                    console.log(JSON.stringify(response, null, 2))
+                                    //console.log(JSON.stringify(response, null, 2))
                                     //try to store chat data with username that geeta told in a database at different collection.
                                     yes_no('Yes', response.context, function(new_response) {
                                         var testobj = {}
@@ -512,7 +523,7 @@ console.log('message',message)
 
                                     })
                                 } else {
-                                    console.log("Name false");
+                                    //console.log("Name false");
 
                                     yes_no('No', response.context, function(new_response) {
                                         var testobj = {}
@@ -525,7 +536,7 @@ console.log('message',message)
                             }
                         });
                 } else if (JSON.parse(response.output.text[0]).cmd == "BornPlace") {   // checking the 2nd security question
-                    console.log("BornPlace triggered");
+                    //console.log("BornPlace triggered");
                     unirest.get(appEnv.url + '/checkuserid')
                         .query({
                             "BornPlace": JSON.parse(response.output.text[0]).BornPlace,
@@ -540,12 +551,12 @@ console.log('message',message)
                                 bot.reply(message, response)
                             } else {
                                 if (responseBornPlace.body) {
-                                    console.log("flow userid");
-                                    console.log("response", JSON.stringify(response, null, 2))
+                                    //console.log("flow userid");
+                                    //console.log("response", JSON.stringify(response, null, 2))
 
                                     yes_no('Yes', response.context, function(new_response) {
 
-                                        console.log(new_response, 'at born place')
+                                        //console.log(new_response, 'at born place')
                                         var testobj = {}
                                         testobj[name] = message.text,
                                             testobj['Oliver'] = JSON.parse(new_response.output.text[0]).message
@@ -553,7 +564,7 @@ console.log('message',message)
 
                                     })
                                 } else {
-                                    console.log("Born place false");
+                                    //console.log("Born place false");
 
                                     yes_no('No', response.context, function(new_response) {
                                         var testobj = {}
@@ -566,34 +577,34 @@ console.log('message',message)
                             }
                         });
                 } else if (JSON.parse(response.output.text[0]).cmd == "PetName") {		// checking the 3rd security question
-                    console.log("PetName triggered");
+                    //console.log("PetName triggered");
                     unirest.get(appEnv.url + '/checkuserid')
                         .query({
                             "PetName": JSON.parse(response.output.text[0]).PetName,
                             '_id': response.context.UserId
                         })
                         .end(function(responsePetName) {
-                            console.log("PetName response", responsePetName.body);
+                            //console.log("PetName response", responsePetName.body);
 
                             if (responsePetName.body) {
-                                console.log(JSON.stringify(response, null, 2))
+                                //console.log(JSON.stringify(response, null, 2))
                                 yes_no('Yes', response.context, function(new_response) {
 
-                                    console.log("new sresp", new_response);
-                                    console.log("new password flow entered")
+                                    //console.log("new sresp", new_response);
+                                    //console.log("new password flow entered")
                                     var randomNumber = randomstring.generate({
                                         length: 7,
                                         charset: 'abcdefgh123456789qxyz'
                                     });
-                                    unirest.get("http://12.28.130.97:8011/sap/opu/odata/sap/ZPWDRESET_SRV/PWDRESETSet(Bapipwd='" + randomNumber.toString() + "',Username='" + response.context.UserId + "')?$format=json")
+                                    unirest.get("https://12.28.130.97:44311/sap/opu/odata/SAP/ZRESETPSWD_SRV/UserSet(UserName='" + response.context.UserId + "',Bapipwd='" + randomNumber.toString() + "')?$format=json")
                                         .auth({
-                                            user: 'PIUSER',
-                                            pass: 'miracle9'
+                                            user: 'ABAP_User',
+                                            pass: 'Creatief@4010'
                                         })
                                         .end(function(respo) {
-
+console.log("respo",respo);
                                             if (respo.error) {
-
+												console.log("respo.error",respo.error);
                                                 var arrt = [];
 
                                                 var op = '{"message": "I am not able to reach the SAP system right now."}';
@@ -602,7 +613,7 @@ console.log('message',message)
 
                                                 bot.reply(message, new_response)
                                             } else {
-                                                //console.log(respo.body.d.Bapipwd);
+                                                ////console.log(respo.body.d.Bapipwd);
                                                 var arrt = [];
                                                 var new_response1 = new_response
                                                 var op = '{"message": "Thank you, I have been able to authenticate your identity. "}';
@@ -614,11 +625,11 @@ console.log('message',message)
                                                 arrt.push(op);
                                                 arrt.push(new_response1.output.text[1])
 
-                                                console.log(arrt, 'aarti')
+                                                //console.log(arrt, 'aarti')
 
                                                 new_response1.output.text[1] = arrt[0];
                                                 new_response1.output.text[2] = arrt[1];
-                                                console.log(new_response1.output.text)
+                                                //console.log(new_response1.output.text)
                                                 var testobj = {}
                                                 testobj[name] = message.text,
                                                     testobj['Oliver'] = JSON.parse(new_response1.output.text[0]).message + " " + JSON.parse(new_response1.output.text[1]).message
@@ -629,8 +640,8 @@ console.log('message',message)
                                         })
                                 })
                             } else {
-                                console.log("else flow in");
-                                //console.log(JSON.parse(response.output.text[0]).message)
+                                //console.log("else flow in");
+                                ////console.log(JSON.parse(response.output.text[0]).message)
 
                                 yes_no('No', response.context, function(new_response) {
                                     var testobj = {}
