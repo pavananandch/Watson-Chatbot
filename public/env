@@ -1,0 +1,22 @@
+# Environment Config
+
+# store your secrets and config variables in here
+# only invited collaborators will be able to see your .env values
+# reference these in your code with process.env.SECRET
+
+# Specify a Botkit Studio token so your bot can access cloud-hosted content and features
+# Get one here: https://studio.botkit.ai/
+#studio_token= 'HcGGdFcPfvWFDDTOZYeZzfScVv9ZPZ0OV5kM1EB82UhOtkm81gpG5GIWjo21IixT'
+
+# Enable learning mode, a set of features
+# that allow your bot to update itself using Botkit Studio's API
+#LEARNING_MODE=true
+
+# Specify a port number for the webserver to run on (default 3000)
+PORT=3000
+
+# Specify a MONGO_URI to enable message history
+# mLab.com has a free tier which is great for getting started
+MONGO_URI=
+M_INSIGHTS_TOKEN= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjAyYjFlZDRhYTQ0YjA2Nzg1NjhiYzMiLCJjcmVhdGVkQXQiOiIyMDE4LTA1LTIxVDExOjQ3OjU3LjMwNloiLCJpYXQiOjE1MjY5MDMyNzd9.7bkFW3GnMChFGX_jn4Tdcx2OW_7fWTnqB6yjI2dGO8k"
+M_INSIGHTS_REF= "7b950889234b7326c21d7cc316e979cf"
