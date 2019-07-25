@@ -3,59 +3,84 @@
 var nodemailer = require('nodemailer');
 var PDFDocument = require('pdfkit');
 var smtpTransport = require('nodemailer-smtp-transport');
-var mailAccountUser = 'schinthalapudi@miraclesoft.com'
-var mailAccountPassword = 'Susanth@1996'
+var mailAccountUser = 'oliverbotagent@gmail.com';
+var mailAccountPassword = 'Miracle@123';
+var fromEmailAddress = 'oliverbotagent@gmail.com';
 var fs = require('file-system');
 var app = require('express')();
-var fromEmailAddress = 'schinthalapudi@miraclesoft.com'
 var myVar;
+var snackbar = false;
 var toEmailAddress = localStorage.getItem("email");
+var displayName = localStorage.getItem("name");
+function titleCase(str) {
+   var splitStr = str.toLowerCase().split(' ');
+   for (var i = 0; i < splitStr.length; i++) {
+       // You do not need to check if i is larger than splitStr length, as your for does that for you
+       // Assign it back to the array
+       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+   }
+   // Directly return the joined string
+   return splitStr.join(' '); 
+}
+displayName = titleCase(displayName); // name used for display in agent side
 var namedata = localStorage.getItem("name");
-namedata = namedata.charAt(0).toUpperCase() + namedata.slice(1);
+//namedata = namedata.charAt(0).toUpperCase() + namedata.slice(1);
+namedata = titleCase(namedata);
+namedata = namedata.replace(/\s/g, '')
 var name = localStorage.getItem("name");
-name = name.charAt(0).toUpperCase() + name.slice(1);
+//name = name.charAt(0).toUpperCase() + name.slice(1);
+name = titleCase(name);
+name = name.replace(/\s/g, '')
 console.log(name)
 var email = localStorage.getItem("email");
 var idleTime = 0;
 var agentname;
-var socket = io.connect('http://localhost:6004/');
+var socket = io.connect('http://OliverAgent.mybluemix.net/');
 $(".typing").hide();
  $("#typer").hide();
   window.onbeforeunload = function() {
-	 if(botstatus == 'inactive'){
+	 if(snackbar){
     socket.emit('logoutname', {'name':name,'botstatus':'inactive','agent':agentname});
 	 }
 }
-$(".input").bind("keyup", function(e) {
+ $(".input").bind("keyup", function(e) {
 if(!$('.input').val() == ""){
 	 socket.emit('typingon',{"name":name,"status":"on"})
 }
 else{
  socket.emit('typingoff',{"name":name,"status":"off"})
  }
-})
+}) 
 socket.on('connect',function(){ 
     // Send ehlo event right after connect:
    socket.emit('create',name);
 });
 
-socket.on('agenttypeon',function(){ 
-	// $(".typing").show();
-	 $("#typer").show();
+ socket.on('agenttypeon',function(){ 
+	 $(".typing").show();
+	 document.getElementById("typing").innerHTML = agentname + " is typing..."
+	console.log("Oliveragenttypingon");
+	 //$("#typer").show();
 });
 socket.on('agenttypeoff',function(){ 
-	// $(".typing").hide();
-	 $("#typer").hide();
+console.log("Oliveragenttypingoff");
+	 $(".typing").hide();
+	 //$("#typer").hide();
 });
 
-var transport = nodemailer.createTransport({
-    host: 'smtp.miraclesoft.com',
-    port: 587,
+//  Configure email params.
+var transport = nodemailer.createTransport(smtpTransport({
+    service: 'gmail',
+	secure: false,
     auth: {
         user: mailAccountUser,
         pass: mailAccountPassword
+    },
+	tls: {
+        rejectUnauthorized: false
     }
-})
+}))
+
 var count = 0;
 var mail;
 var typingstatus;
@@ -83,19 +108,24 @@ socket.on('agent',function(msg){
 	myStopFunction();
 	bote = false;
 	idleTime = 0;
+	snackbar = true;
 	botstatus = "inactive";
 	play();
 	messenger.recieve(msg);
 })
 socket.on('startbot',function(msg){
-	botstatus = "active";
-	bote = true;
-    botcount = 0;
-	        setTimeout(function() {
+	if(botstatus != "active"){
+	setTimeout(function() {
             messenger.recieve({
                 text: "You have been disconnected from the help desk agent"
             });
         }, 900);
+	}
+	botstatus = "active";
+	bote = true;
+	snackbar = false;
+    botcount = 0;
+	        
 })
 function logout() {
 	//socket.emit('chathistory',{"chathist":chathist,"name":name})
@@ -123,8 +153,11 @@ idleTime = 0;
         } else {
             console.log(response);
             console.log("Message sent: " + response.messageId);
-            window.location = "login.html"
+           // window.location = "login.html"
         }
+		setTimeout(function() {
+            window.location = "login.html"
+        }, 900);
 
         transport.close();
     });
@@ -253,10 +286,7 @@ $(document).ready(function() {
     }
 
     function animateText() {
-        setTimeout(function() {
             $content.find('.message-wrapper').last().find('.text-wrapper').addClass('animated fadeIn');
-        }, 350);
-
     }
 
     function scrollBottom() {
@@ -309,12 +339,12 @@ $(document).ready(function() {
 				if(JSON.parse(data.output.text[0]).message == "I didn't understand. Can you try rephrasing?" || JSON.parse(data.output.text[0]).message == "I'm not sure what you mean..."){
                 			botcount++;
 			if(botcount == 2 && bote == true){
-			 setTimeout(function() {
+
             messenger.recieve({
                 'text': 'Would you like to speak with an agent?',
 				"Buttons": "<br><button id=\"button-Yes\"onclick=\"APICALL({channel: 'W', text: 'Accept'});\">Accept</button>&nbsp&nbsp<button id=\"button-No\" onclick=\"APICALL({channel: 'W', text: 'Decline'});\">Decline</button>",
             });
-        }, 900);		
+	
 		var historyobj = {};
                         historyobj[name] = message.text,
 						historyobj['UserAgent'] = 'Would you like to speak with an agent?'
@@ -333,6 +363,7 @@ $(document).ready(function() {
 			 var msg = {};
             msg.name = name;
             msg.data = chathist;
+			msg.displayName = displayName;
 			console.log("triggered")
 			socket.emit('broadcast', msg);	
 	
@@ -592,9 +623,9 @@ console.log("APICALL",message)
     }
 
     function animateText() {
-        setTimeout(function() {
+
             $content.find('.message-wrapper').last().find('.text-wrapper').addClass('animated fadeIn');
-        }, 350);
+
 
     }
 

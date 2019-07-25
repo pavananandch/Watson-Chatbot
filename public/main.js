@@ -22,7 +22,7 @@ app.on('ready', () => {
   // create main browser window
   mainWindow = new BrowserWindow({
       width: 475,
-   height: 698,
+   height: 716,
  maximizable: false,
   icon: demoIcon,
    show: true,
