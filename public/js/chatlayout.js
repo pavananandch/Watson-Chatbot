@@ -12,6 +12,7 @@ var myVar;
 var snackbar = false;
 var toEmailAddress = localStorage.getItem("email");
 var displayName = localStorage.getItem("name");
+var chatbackup = [];
 function titleCase(str) {
    var splitStr = str.toLowerCase().split(' ');
    for (var i = 0; i < splitStr.length; i++) {
@@ -164,7 +165,7 @@ idleTime = 0;
     chathist = [];
     chatdata = null;
     chatd = null;
-
+    chatbackup = [];
     /* $.get( "http://localhost:3000/logout", function(response,err) {
     alert("into logout");
     if(!response){
@@ -363,6 +364,29 @@ $(document).ready(function() {
 			 var msg = {};
             msg.name = name;
             msg.data = chathist;
+            chathist.forEach(element => { 
+                if(element.hasOwnProperty(namedata)){
+                    chatbackup.push(
+                        {
+                            type: "USER",
+                            message: element[namedata],
+                            date: element.time
+                          }
+                    )
+                }
+                if(element.hasOwnProperty('Oliver')){
+                    chatbackup.push(
+                        {
+                            type: "BOT",
+                            message: element.Oliver,
+                            date: element.time
+                          }
+                    )
+                }
+            });
+            msg.chat = chatbackup
+            console.log("chathist",chatbackup)
+
 			msg.displayName = displayName;
 			console.log("triggered")
 			socket.emit('broadcast', msg);	
