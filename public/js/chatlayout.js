@@ -388,7 +388,28 @@ $(document).ready(function() {
             console.log("chathist",chatbackup)
 
 			msg.displayName = displayName;
-			console.log("triggered")
+            console.log("triggered")
+            chathist.forEach(element => { 
+                if(element.hasOwnProperty(namedata)){
+                    chatbackup.push(
+                        {
+                            type: "USER",
+                            message: element[namedata],
+                            date: element.time
+                          }
+                    )
+                }
+                if(element.hasOwnProperty('Oliver')){
+                    chatbackup.push(
+                        {
+                            type: "BOT",
+                            message: element.Oliver,
+                            date: element.time
+                          }
+                    )
+                }
+            });
+            msg.chat = chatbackup
 			socket.emit('broadcast', msg);	
 	
         }
