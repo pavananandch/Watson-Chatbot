@@ -22,7 +22,7 @@
     "email-templates": "^4.0.1",
     "express-mailer": "^0.3.1",
     "file-system": "^2.2.2",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "nodemailer": "^4.6.4",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "nodemailer-smtp-transport": "^2.7.4",
