@@ -13,7 +13,7 @@
     "botkit": "^0.6.8",
     "cloudant": "^1.10.0-NOTICE",
     "ejs": "^2.6.1",
-    "electron": "^2.0.0",
+    "electron": "^11.5.0",
     "electron-context-menu": "^0.9.1",
     "electron-json-storage": "^4.1.0",
     "electron-online": "^1.0.0",
