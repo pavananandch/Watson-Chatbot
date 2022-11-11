@@ -28,7 +28,7 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "pdfkit": "^0.8.3",
     "randomstring": "^1.1.5",
-    "socket.io": "^2.0.3",
+    "socket.io": "^2.5.0",
     "uniqid": "^4.1.1",
     "unique-string": "^1.0.0",
     "unirest": "^0.5.1"
